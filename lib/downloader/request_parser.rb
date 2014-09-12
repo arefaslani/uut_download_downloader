@@ -1,4 +1,4 @@
-require_relative 'errors'
+require 'downloader/errors/invalid_request_error'
 
 module Downloader
   # A request type is like this:
