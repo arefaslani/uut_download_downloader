@@ -1,4 +1,5 @@
 require 'eventmachine'
+require 'uri'
 
 module Downloader
   module Downloads
@@ -11,7 +12,7 @@ module Downloader
       end
 
       def get(uri, options={})
-        download_uri = URI.parse(uri)
+        download_uri = ::URI.parse(uri)
         self.downloaded_file_name = "#{self.download_id}_#{download_uri.path.split('/').last}"
         download_path = ENV['UUT_DOWNLOAD_PATH'] || File.join(ENV['HOME'], 'leeching')
 
