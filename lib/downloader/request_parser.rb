@@ -30,6 +30,9 @@ module Downloader
 
     private
 
+    # Gets a raw request as defined above and make a hash from it
+    # and returns something like:
+    # {download_id: '12313112', download_protocol: 'http'}
     def prepare_headers
       raw_headers = self.data.split("\n\n")[0]
       raw_headers.split("\n").each do |header|
