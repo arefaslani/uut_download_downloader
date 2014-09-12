@@ -21,3 +21,4 @@ tmp
 *.a
 mkmf.log
 lib/downloader/client.rb
+lib/downloader/request.txt
