@@ -1,6 +1,6 @@
 require 'eventmachine'
-require_relative 'request_parser'
-require_relative 'http_download'
+require 'downloader/request_parser'
+require 'downloader/downloads/http'
 
 module Downloader
   class RequestHandler < EM::Connection
@@ -17,7 +17,7 @@ module Downloader
         rp = Downloader::RequestParser.new(data)
         case rp.download_protocol
         when 'http'
-          http_download = Downloader::HTTP.new(rp.download_id).
+          http_download = Downloader::Downloads::HTTP.new(rp.download_id).
                           get(rp.body)
           send_data http_download
         else
