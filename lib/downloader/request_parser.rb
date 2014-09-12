@@ -2,7 +2,8 @@ require_relative 'errors'
 
 module Downloader
   # A request type is like this:
-  # => HTTP|12314124|UUTDOWNLOAD/0.1
+  # => DOWNLOAD_ID: 1231231
+  # => DOWNLOAD_PROTOCOL: HTTP
   # => \n\n
   # => HTTP://www.test.com/file.iso
   class RequestParser
