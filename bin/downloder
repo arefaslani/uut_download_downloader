@@ -1,7 +1,11 @@
 #!/usr/bin/env ruby
 
+File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')).tap do |dir|
+  $:.unshift(dir)
+end
+
 require 'eventmachine'
-require_relative '../lib/downloader/request_handler'
+require 'downloader/request_handler'
 
 puts "Server Started..."
 begin
