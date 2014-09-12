@@ -1,7 +1,6 @@
 require 'eventmachine'
 require_relative 'request_parser'
-# require_relative 'http_download'
-require 'em-http-request'
+require_relative 'http_download'
 
 module Downloader
   class RequestHandler < EM::Connection
@@ -18,9 +17,11 @@ module Downloader
         rp = Downloader::RequestParser.new(data)
         case rp.download_protocol
         when 'http'
-          http_download = EM::HttpRequest.new(rp.body).get
-          send_data http_download.response
-          # send_data http_download.message.to_s
+          http_download = Downloader::HTTP.new(rp.download_id).
+                          get(rp.body)
+          send_data http_download
+        else
+          send_data 'nope'
         end
       rescue Errors::InvalidRequestError
         puts "(#{Time.now.to_s}) --> Invalid request(by cid: #{@cid})"
