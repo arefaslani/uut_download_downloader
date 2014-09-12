@@ -6,40 +6,50 @@ module Downloader
   # => \n\n
   # => HTTP://www.test.com/file.iso
   class RequestParser
-    attr_reader :data
+    attr_accessor :data, :headers
 
     def initialize(request_data)
-      @data = request_data
-      validate_request
+      self.data = request_data
+      self.headers = {}
+      prepare_headers
+      # validate_request
     end
 
     def download_protocol
-      headers[0].downcase
+      self.headers['download_protocol']
     end
 
     def download_id
-      headers[1]
+      self.headers['download_id']
     end
 
-    def protocol_version
-      headers[2].split("\/")[1]
-    end
+    # def protocol_version
+    #   headers[2].split("\/")[1]
+    # end
 
     def body
-      @data.split("\n\n")[1]
+      self.data.split("\n\n")[1].strip
     end
 
     private
 
-    def headers
-      raw_headers = @data.split("\n\n")[0]
-      raw_headers.split("|")
+    def prepare_headers
+      raw_headers = self.data.split("\n\n")[0]
+      raw_headers.split("\n").each do |header|
+        key, value = header.split(":")
+        self.headers[key.strip.downcase] = value.strip.downcase
+      end
     end
 
-    def validate_request
-      raise Errors::InvalidRequestError unless headers[0].match(/^(http|https|ftp|ftps|bittorrent|magnet)$/i)
-      raise Errors::InvalidRequestError unless headers[1].match(/^\d+$/)
-      raise Errors::InvalidRequestError unless headers[2].match(/^UUTDOWNLOAD\/\d\.\d$/)
-    end
+    # def headers
+    #   raw_headers = @data.split("\n\n")[0]
+    #   raw_headers.split("|")
+    # end
+
+    # def validate_request
+    #   raise Errors::InvalidRequestError unless headers[0].match(/^(http|https|ftp|ftps|bittorrent|magnet)$/i)
+    #   raise Errors::InvalidRequestError unless headers[1].match(/^\d+$/)
+    #   raise Errors::InvalidRequestError unless headers[2].match(/^UUTDOWNLOAD\/\d\.\d$/)
+    # end
   end
 end
