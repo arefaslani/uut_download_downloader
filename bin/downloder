@@ -7,6 +7,8 @@ end
 require 'eventmachine'
 require 'downloader/request_handler'
 
+require_relative '../lib/web/app.rb'
+
 puts "Server Started..."
 begin
   EM.run do
