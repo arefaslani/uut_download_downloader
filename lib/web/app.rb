@@ -3,7 +3,7 @@ require 'sinatra/json'
 require 'nokogiri'
 
 class WebApp < Sinatra::Base
-  get '/progress/:id/:format' do
+  get '/progress/:id.?:format?' do
     case params[:format]
     when 'json'
       content_type :json
