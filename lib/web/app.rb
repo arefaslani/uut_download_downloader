@@ -1,7 +1,7 @@
-require 'sinatra'
+require 'sinatra/base'
 
-set :port, 8080
-
-get '/progress/:id' do
-  "Download id: #{params[:id]}"
+class WebApp < Sinatra::Base
+  get '/progress/:id' do
+    "Download id: #{params[:id]}"
+  end
 end
