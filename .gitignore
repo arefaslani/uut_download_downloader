@@ -22,4 +22,4 @@ tmp
 mkmf.log
 lib/downloader/client.rb
 lib/downloader/request.txt
-lib/downloader/downloads/logs/*.txt
+logs/*.txt

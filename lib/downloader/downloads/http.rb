@@ -23,7 +23,7 @@ module Downloader
               line.split().each do |part|
                 if part.match(/\d%/)
                   puts part
-                  File.open(File.expand_path(File.join('lib/downloader/downloads/logs', "#{self.download_id}.txt")), 'w+') do |file|
+                  File.open(File.expand_path(File.join('logs', "#{self.download_id}.txt")), 'w+') do |file|
                     file.write(part)
                   end
                 end
