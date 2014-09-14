@@ -5,6 +5,7 @@ class WebApp < Sinatra::Base
   get '/progress/:id/:format' do
     case params[:format]
     when 'json'
+      content_type :json
       json id: params[:id]
     end
   end
