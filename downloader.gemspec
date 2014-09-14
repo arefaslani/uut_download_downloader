@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_runtime_dependency "eventmachine", "~> 1.0"
   spec.add_runtime_dependency "sinatra", "~> 1"
+  spec.add_runtime_dependency "sinatra-contrib", "~> 1.4"
 end
