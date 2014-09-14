@@ -12,6 +12,8 @@ module Downloader
       end
 
       def get(uri, options={})
+        file = File.open(File.join('logs', "#{self.download_id}.txt"))
+        
         download_uri = ::URI.parse(uri)
         self.downloaded_file_name = "#{self.download_id}_#{download_uri.path.split('/').last}"
         download_path = ENV['UUT_DOWNLOAD_PATH'] || File.join(ENV['HOME'], 'leeching')
@@ -26,6 +28,8 @@ module Downloader
             end
           end
         end
+
+        file.close
 
         return f.inspect
       end
