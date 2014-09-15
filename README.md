@@ -48,7 +48,7 @@ or as json:
 http://localhost:4567/progress/5326938310.json
 <br>returns
 ```json
-{"id":"5326938310", "progress":"59%"}
+{"file":{"id":"5326938310","progress":"59%"}}
 ```
 
 ## Installation
