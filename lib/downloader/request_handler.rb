@@ -21,6 +21,7 @@ module Downloader
           http_download = Downloader::Downloads::HTTP.new(rp.download_id).
                           get(rp.body)
           http_download.callback do
+            FileUtils.generate_torrent(rp.download_id, rp.body)
             send_data "wget exit code: #{http_download.exit_code}"
           end
 
