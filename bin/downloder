@@ -4,13 +4,15 @@ File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')).tap do |dir|
   $:.unshift(dir)
 end
 
+require_relative '../config.rb'
+
 require 'eventmachine'
 require 'downloader/request_handler'
 
 puts "Server Started..."
 begin
   EM.run do
-    EM.start_server('0.0.0.0', 9000, Downloader::RequestHandler)
+    EM.start_server('0.0.0.0', ENV['PORT'].to_i, Downloader::RequestHandler)
   end
 rescue Interrupt
   puts "Server Stopped."

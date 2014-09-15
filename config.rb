@@ -1,0 +1,5 @@
+ENV['DOWNLOAD_PATH'] = File.join(ENV['HOME'], 'leeching')
+ENV['PORT'] = "9000"
+ENV['PORT_WEB'] = "4567"
+ENV['TRACKER_ADDRESS'] = "127.0.0.1"
+ENV['TRACKER_PORT'] = "9696"
