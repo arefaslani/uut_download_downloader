@@ -4,7 +4,7 @@ module Downloader
     def self.generate_download_path(id, url)
       download_uri = ::URI.parse(url)
       downloaded_file_name = "#{id}_#{download_uri.path.split('/').last}"
-      download_path = ENV['UUT_DOWNLOAD_PATH'] || File.join(ENV['HOME'], 'leeching')
+      download_path = ENV['DOWNLOAD_PATH']
       return File.join(download_path, downloaded_file_name)
     end
 
