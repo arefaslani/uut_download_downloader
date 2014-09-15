@@ -65,8 +65,6 @@ Install dependencies through running this command:
 ```
 bundle install
 ```
-Open config.rb and change it's parameters if you like.<br>
-
 Build the gem through
 ```
 gem build downloader.gemspec
@@ -98,7 +96,7 @@ This application uses "mktorrent" command line utility for generating torrents.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/downloader/fork )
+1. Fork it ( https://github.com/arefaslani/uut_download_downloader/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
