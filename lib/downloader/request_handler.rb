@@ -1,6 +1,7 @@
 require 'eventmachine'
-require_relative 'request_parser'
-require_relative 'http_download'
+require 'downloader/request_parser'
+require 'downloader/downloads/http'
+require 'downloader/file_utils'
 
 module Downloader
   class RequestHandler < EM::Connection
@@ -17,9 +18,21 @@ module Downloader
         rp = Downloader::RequestParser.new(data)
         case rp.download_protocol
         when 'http'
-          http_download = Downloader::HTTP.new(rp.download_id).
+          http_download = Downloader::Downloads::HTTP.new(rp.download_id).
                           get(rp.body)
-          send_data http_download
+          http_download.callback do
+            FileUtils.generate_torrent(rp.download_id, rp.body)
+            send_data "wget exit code: #{http_download.exit_code}"
+          end
+
+          http_download.errback do
+            begin
+              File.delete(FileUtils.generate_download_path(rp.download_id, rp.body))
+              File.delete("logs/#{rp.download_id}.txt")
+            rescue Errno::ENOENT
+            end
+            send_data "wget exit code: #{http_download.exit_code}"
+          end
         else
           send_data 'nope'
         end

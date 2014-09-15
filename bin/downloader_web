@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+require 'optparse'
+
+OptionParser.new do |opts|
+  ENV['PORT_WEB'] = "4567"
+  opts.on("-p", "--port PORT", "Set listener port.") do |port|
+    ENV['PORT_WEB'] = port
+  end
+end.parse!
+
+require_relative '../lib/web/app.rb'
+WebApp.run!

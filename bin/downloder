@@ -1,13 +1,9 @@
 #!/usr/bin/env ruby
 
-require 'eventmachine'
-require_relative '../lib/downloader/request_handler'
-
-puts "Server Started..."
-begin
-  EM.run do
-    EM.start_server('0.0.0.0', 9000, Downloader::RequestHandler)
-  end
-rescue Interrupt
-  puts "Server Stopped."
+File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')).tap do |dir|
+  $:.unshift(dir)
 end
+
+require 'downloader'
+
+Downloader::Application.run
