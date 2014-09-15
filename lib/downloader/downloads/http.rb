@@ -1,5 +1,6 @@
 require 'eventmachine'
 require 'uri'
+require 'downloader/file_utils'
 
 module Downloader
   module Downloads
@@ -12,20 +13,14 @@ module Downloader
       end
 
       def get(uri, options={})
-        download_uri = ::URI.parse(uri)
-        self.downloaded_file_name = "#{self.download_id}_#{download_uri.path.split('/').last}"
-        download_path = ENV['UUT_DOWNLOAD_PATH'] || File.join(ENV['HOME'], 'leeching')
-
-        process = IO.popen("wget #{uri} -O #{File.join(download_path, downloaded_file_name)} 2>&1", "r")
+        process = IO.popen("wget #{uri} -O #{FileUtils.generate_download_path(self.download_id, uri)} 2>&1", "r")
         process.each do |line|
           sleep 1
           if line.match(/\d%/)
             line.split().each do |part|
               if part.match(/\d%/)
                 puts part
-                File.open(File.expand_path(File.join('logs', "#{self.download_id}.txt")), 'w+') do |file|
-                  file.write(part)
-                end
+                FileUtils.write_log(self.download_id, part, mode: 'w')
               end
             end
           end
