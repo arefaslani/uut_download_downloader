@@ -87,6 +87,11 @@ All options are listed below:
 * <b>-t</b> or <b>--tracker-address</b>: Set the torrent tracker address(Default: 0.0.0.0).
 * <b>-p</b> or <b>--tracker-port</b>: Set the torrent tracker port(Default: 6969).
 
+downloader_web [options]<br>
+
+All options are listed below:
+* <b>-p</b> or <b>--port</b>: Sets the listener port of the process.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/downloader/fork )
