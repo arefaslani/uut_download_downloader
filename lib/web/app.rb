@@ -13,7 +13,7 @@ class WebApp < Sinatra::Base
     case format
     when 'json'
       content_type :json
-      json id: id, progress: progress
+      json file: { id: id, progress: progress }
     when 'xml'
       content_type :xml
       Nokogiri::XML::Builder.new do |xml|
