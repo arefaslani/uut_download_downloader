@@ -82,11 +82,10 @@ and run downloader and downloader_web in separate terminal tabs.
 downloader [options]<br>
 
 All options are listed below:
-* <b>-d</b> or <b>--downloads-dir</b>: Downloaded files go here.
-* <b>-P</b> or <b>--port</b>: Set main process listener port.
-* <b>-p</b> or <b>--port-web</b>: Set web interface listener port.
-* <b>-t</b> or <b>--tracker-address</b>: Set the torrent tracker address.
-* <b>-T</b> or <b>--tracker-port</b>: Set the torrent tracker port.
+* <b>-d</b> or <b>--downloads-dir</b>: Downloaded files go here(Default: ~/leeching).
+* <b>-P</b> or <b>--port</b>: Set main process listener port(Default: 9000).
+* <b>-t</b> or <b>--tracker-address</b>: Set the torrent tracker address(Default: 0.0.0.0).
+* <b>-p</b> or <b>--tracker-port</b>: Set the torrent tracker port(Default: 6969).
 
 ## Contributing
 
