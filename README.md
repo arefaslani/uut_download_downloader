@@ -92,6 +92,10 @@ downloader_web [options]<br>
 All options are listed below:
 * <b>-p</b> or <b>--port</b>: Sets the listener port of the process.
 
+## Requirements
+
+This application uses "mktorrent" command line utility for generating torrents.
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/downloader/fork )
