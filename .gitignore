@@ -23,3 +23,5 @@ mkmf.log
 lib/downloader/client.rb
 lib/downloader/request.txt
 logs/*.txt
+*/**/.DS_Store
+.DS_Store
