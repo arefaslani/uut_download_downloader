@@ -33,18 +33,13 @@ module Downloader
           ENV['PORT'] = port
         end
 
-        ENV['PORT_WEB'] = "4567"
-        opts.on("-p", "--port-web PORT", "Set web interface listener port.") do |port|
-          ENV['PORT_WEB'] = port
-        end
-
         ENV['TRACKER_ADDRESS'] = "0.0.0.0"
         opts.on("-t", "--tracker-address ADDRESS", "Set the torrent tracker address.") do |addresss|
           ENV['TRACKER_ADDRESS'] = addresss
         end
 
         ENV['TRACKER_PORT'] = "6969"
-        opts.on("-T", "--tracker-port PORT", "Set the torrent tracker port.") do |port|
+        opts.on("-p", "--tracker-port PORT", "Set the torrent tracker port.") do |port|
           ENV['TRACKER_PORT'] = port
         end
       end.parse!
