@@ -37,10 +37,10 @@ http://localhost:4567/progress/5326938310.xml
 <br>returns
 ```xml
 <?xml version="1.0"?>
-<progress>
+<file>
   <id>5326938310</id>
-  <value>59%</value>
-</progress>
+  <progress>59%</progress>
+</file>
 ```
 
 or as json:
@@ -48,7 +48,7 @@ or as json:
 http://localhost:4567/progress/5326938310.json
 <br>returns
 ```json
-{"id":"5326938310", "value":"59%"}
+{"id":"5326938310", "progress":"59%"}
 ```
 
 ## Installation
