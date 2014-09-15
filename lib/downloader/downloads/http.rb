@@ -6,7 +6,7 @@ module Downloader
   module Downloads
     class HTTP
       include EM::Deferrable
-      attr_accessor :message, :download_id, :status, :downloaded_file_name
+      attr_accessor :message, :download_id, :status, :downloaded_file_name, :exit_code
       
       def initialize(download_id)
         self.download_id = download_id
@@ -29,16 +29,16 @@ module Downloader
         _, status = Process::waitpid2 process.pid
         process.close
 
-        exit_code = status.to_s.split().last.strip.to_i
+        self.exit_code = status.to_s.split().last.strip.to_i
 
-        case exit_code
+        case self.exit_code
         when 0
           set_deferred_status :succeeded
-          return "Wget exit code: 0"
         else
           set_deferred_status :failed
-          return "Wget exit code: #{exit_code}"
         end
+
+        return self
       end
     end
   end

@@ -1,6 +1,7 @@
 require 'eventmachine'
 require 'downloader/request_parser'
 require 'downloader/downloads/http'
+require 'downloader/file_utils'
 
 module Downloader
   class RequestHandler < EM::Connection
@@ -19,7 +20,18 @@ module Downloader
         when 'http'
           http_download = Downloader::Downloads::HTTP.new(rp.download_id).
                           get(rp.body)
-          send_data http_download
+          http_download.callback do
+            send_data "wget exit code: #{http_download.exit_code}"
+          end
+
+          http_download.errback do
+            begin
+              File.delete(FileUtils.generate_download_path(rp.download_id, rp.body))
+              File.delete("logs/#{rp.download_id}.txt")
+            rescue Errno::ENOENT
+            end
+            send_data "wget exit code: #{http_download.exit_code}"
+          end
         else
           send_data 'nope'
         end
