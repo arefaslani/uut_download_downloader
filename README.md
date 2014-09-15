@@ -65,6 +65,8 @@ Install dependencies through running this command:
 ```
 bundle install
 ```
+Open config.rb and change it's parameters if you like.<br>
+
 Build the gem through
 ```
 gem build downloader.gemspec
