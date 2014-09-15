@@ -14,5 +14,12 @@ module Downloader
         file.write(message)
       end
     end
+
+    def self.generate_torrent(id, url)
+      system("mktorrent -o #{self.generate_download_path(id, url)}.torrent \\
+              -a udp://#{ENV['TRACKER_ADDRESS']}:#{ENV['TRACKER_PORT']}/announce \\
+              -a tcp://#{ENV['TRACKER_ADDRESS']}:#{ENV['TRACKER_PORT']}/announce \\
+              #{self.generate_download_path(id, url)}")
+    end
   end
 end
