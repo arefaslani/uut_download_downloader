@@ -4,6 +4,8 @@ File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib')).tap do |dir|
   $:.unshift(dir)
 end
 
+require_relative '../config.rb'
+
 require 'eventmachine'
 require 'downloader/request_handler'
 
