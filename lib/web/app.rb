@@ -4,7 +4,11 @@ require 'nokogiri'
 
 class WebApp < Sinatra::Base
   get '/progress/:id.?:format?' do |id, format|
-    progress = File.read(File.expand_path(File.join('logs/', "#{id}.txt")))
+    progress = begin
+      File.read(File.expand_path(File.join('logs/', "#{id}.txt")))
+    rescue
+      "-1"
+    end
 
     case format
     when 'json'
