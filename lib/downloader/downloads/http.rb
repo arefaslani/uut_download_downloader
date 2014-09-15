@@ -20,9 +20,7 @@ module Downloader
             line.split().each do |part|
               if part.match(/\d%/)
                 puts part
-                File.open(File.expand_path(File.join('logs', "#{self.download_id}.txt")), 'w+') do |file|
-                  file.write(part)
-                end
+                FileUtils.write_log(self.download_id, part, mode: 'w')
               end
             end
           end

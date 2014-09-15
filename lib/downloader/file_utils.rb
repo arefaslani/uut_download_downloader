@@ -7,5 +7,12 @@ module Downloader
       download_path = ENV['UUT_DOWNLOAD_PATH'] || File.join(ENV['HOME'], 'leeching')
       return File.join(download_path, downloaded_file_name)
     end
+
+    def self.write_log(id, message, options={})
+      options[:mode] ||= 'a'
+      File.open(File.expand_path(File.join('logs', "#{id}.txt")), options[:mode]) do |file|
+        file.write(message)
+      end
+    end
   end
 end
