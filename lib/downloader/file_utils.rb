@@ -10,9 +10,13 @@ module Downloader
 
     def self.write_log(id, message, options={})
       options[:mode] ||= 'a'
-      File.open(File.expand_path(File.join(File.dirname(__FILE__), '../logs', "#{id}.txt")), options[:mode]) do |file|
+      File.open(File.expand_path(File.join(File.dirname(__FILE__), '../../logs', "#{id}.txt")), options[:mode]) do |file|
         file.write(message)
       end
+    end
+
+    def self.delete_progress_file(id)
+      File.delete(File.join(File.dirname(__FILE__), "../../logs/#{id}.txt"))
     end
 
     def self.generate_torrent(id, url)
