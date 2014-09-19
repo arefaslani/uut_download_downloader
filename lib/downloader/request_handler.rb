@@ -22,13 +22,14 @@ module Downloader
                           get(rp.body)
           http_download.callback do
             FileUtils.generate_torrent(rp.download_id, rp.body)
+            File.delete(File.join(File.dirname(__FILE__), "../logs/#{rp.download_id}.txt"))
             send_data "wget exit code: #{http_download.exit_code}"
           end
 
           http_download.errback do
             begin
               File.delete(FileUtils.generate_download_path(rp.download_id, rp.body))
-              File.delete("logs/#{rp.download_id}.txt")
+              File.delete(File.join(File.dirname(__FILE__), "../logs/#{rp.download_id}.txt"))
             rescue Errno::ENOENT
             end
             send_data "wget exit code: #{http_download.exit_code}"
