@@ -10,7 +10,7 @@ module Downloader
 
     def self.write_log(id, message, options={})
       options[:mode] ||= 'a'
-      File.open(File.expand_path(File.join('logs', "#{id}.txt")), options[:mode]) do |file|
+      File.open(File.expand_path(File.join(File.dirname(__FILE__), '../logs', "#{id}.txt")), options[:mode]) do |file|
         file.write(message)
       end
     end
