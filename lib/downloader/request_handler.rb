@@ -22,14 +22,14 @@ module Downloader
                           get(rp.body)
           http_download.callback do
             FileUtils.generate_torrent(rp.download_id, rp.body)
-            FileUtils.delete_progress_file(rp.download_id)
+            DB[:downloads].where(download_id: rp.download_id).delete
             send_data "wget exit code: #{http_download.exit_code}"
           end
 
           http_download.errback do
             begin
               File.delete(FileUtils.generate_download_path(rp.download_id, rp.body))
-              FileUtils.delete_progress_file(rp.download_id)
+              DB[:downloads].where(download_id: rp.download_id).delete
             rescue Errno::ENOENT
             end
             send_data "wget exit code: #{http_download.exit_code}"
