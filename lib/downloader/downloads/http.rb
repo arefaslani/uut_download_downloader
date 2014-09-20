@@ -20,7 +20,11 @@ module Downloader
             line.split().each do |part|
               if part.match(/\d%/)
                 puts part
-                FileUtils.write_log(self.download_id, part, mode: 'w')
+                begin
+                  DB[:downloads].insert(download_id: self.download_id, progress: part)
+                rescue
+                  DB[:downloads].where(download_id: self.download_id).update(progress: part)
+                end
               end
             end
           end
