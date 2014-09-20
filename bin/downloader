@@ -6,4 +6,7 @@ end
 
 require 'downloader'
 
+DB = Sequel.sqlite(File.expand_path(File.join(File.dirname(__FILE__), '../db/production.db')))
+DB_SLAVE = Sequel.sqlite(File.expand_path(File.join(File.dirname(__FILE__), '../db/production.db')), servers: {})
+
 Downloader::Application.run

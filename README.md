@@ -20,10 +20,9 @@ Each header separates with a \n from the others. All Accepted headers are listed
 
 ## Binaries
 
-This software consists of two binaries:
+This software consists of one binary:
 
-* downloader: runs the main downloader listener.
-* downloader_web: runs a HTTP listener that the web application can simply work with it.
+* downloader: runs the main and web interface listeners.
 
 ## HTTP Listener
 
@@ -82,17 +81,13 @@ downloader [options]<br>
 All options are listed below:
 * <b>-d</b> or <b>--downloads-dir</b>: Downloaded files go here(Default: ~/leeching).
 * <b>-P</b> or <b>--port</b>: Set main process listener port(Default: 9000).
+* <b>-p</b> or <b>--port-web</b>: Sets the listener port of the process.
 * <b>-t</b> or <b>--tracker-address</b>: Set the torrent tracker address(Default: 0.0.0.0).
-* <b>-p</b> or <b>--tracker-port</b>: Set the torrent tracker port(Default: 6969).
-
-downloader_web [options]<br>
-
-All options are listed below:
-* <b>-p</b> or <b>--port</b>: Sets the listener port of the process.
+* <b>-T</b> or <b>--tracker-port</b>: Set the torrent tracker port(Default: 6969).
 
 ## Requirements
 
-This application uses "mktorrent" command line utility for generating torrents.
+This application uses "mktorrent" command line utility for generating torrents and wget for download from http.
 
 ## Contributing
 
