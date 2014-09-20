@@ -85,6 +85,15 @@ All options are listed below:
 * <b>-t</b> or <b>--tracker-address</b>: Set the torrent tracker address(Default: 0.0.0.0).
 * <b>-T</b> or <b>--tracker-port</b>: Set the torrent tracker port(Default: 6969).
 
+## Database
+
+All data including current download progress will be saved into a sqlite database located at db/production.db. For accessing database easily 'sequel' gem is used. All database migrations are in db/migrations directory. To change schema you should create another migration and run it through
+
+```
+rake db:migrate
+```
+in command line interface.
+
 ## Requirements
 
 This application uses "mktorrent" command line utility for generating torrents and wget for download from http.
