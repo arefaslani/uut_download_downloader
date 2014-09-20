@@ -6,6 +6,7 @@ module Downloader
   module Web
     class App < Sinatra::Base
       set :port, Proc.new { ENV['PORT_WEB'].to_i }
+      set :server, 'webrick'
 
       get '/progress/:id.?:format?' do |id, format|
         progress = begin
