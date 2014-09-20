@@ -3,6 +3,7 @@ require 'eventmachine'
 require 'downloader/request_handler'
 require 'downloader/web/app'
 require 'optparse'
+require 'sequel'
 
 module Downloader
   class Application
@@ -11,9 +12,11 @@ module Downloader
       get_options
 
       Process.fork do
+        DB_SLAVE = Sequel.sqlite(File.expand_path(File.join(File.dirname(__FILE__), '../db/production.db')), servers: {})
         Downloader::Web::App.run!
       end
 
+      DB_MASTER = Sequel.sqlite(File.expand_path(File.join(File.dirname(__FILE__), '../db/production.db')))
       puts "Server Started..."
       begin
         EM.run do
