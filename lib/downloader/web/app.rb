@@ -9,7 +9,7 @@ module Downloader
 
       get '/progress/:id.?:format?' do |id, format|
         progress = begin
-          File.read(File.expand_path(File.join('logs/', "#{id}.txt")))
+          DB_SLAVE[:downloads][download_id: id][:progress]
         rescue
           "-1"
         end
