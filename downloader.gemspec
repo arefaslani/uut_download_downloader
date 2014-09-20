@@ -26,4 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "sinatra", "~> 1"
   spec.add_runtime_dependency "sinatra-contrib", "~> 1.4"
   spec.add_runtime_dependency "nokogiri", "~> 1.6"
+  spec.add_runtime_dependency "sqlite3", "~> 1.3"
+  spec.add_runtime_dependency "sequel", "~> 4.14"
 end
