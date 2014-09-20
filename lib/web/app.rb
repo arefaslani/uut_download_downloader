@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/json'
 require 'nokogiri'
 
-class WebApp < Sinatra::Base
+class App < Sinatra::Base
   set :port, Proc.new { ENV['PORT_WEB'].to_i }
 
   get '/progress/:id.?:format?' do |id, format|
