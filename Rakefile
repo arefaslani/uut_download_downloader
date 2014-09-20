@@ -1,6 +1,6 @@
 require "bundler/gem_tasks"
 require 'fileutils'
-require "sequel"
+require 'sequel'
 
 namespace :db do
   desc "Run migrations"
@@ -9,7 +9,7 @@ namespace :db do
     FileUtils.mkdir_p File.expand_path(File.join(File.dirname(__FILE__), 'db/migrations'))
     
     Sequel.extension :migration
-    db = Sequel.connect(File.expand_path(File.join(File.dirname(__FILE__), 'db/production.db')))
+    db = Sequel.sqlite(File.expand_path(File.join(File.dirname(__FILE__), 'db/production.db')))
     if args[:version]
       puts "Migrating to version #{args[:version]}"
       Sequel::Migrator.run(db, File.expand_path(File.join(File.dirname(__FILE__), "db/migrations")),
