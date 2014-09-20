@@ -1,6 +1,7 @@
 require "downloader/version"
 require 'eventmachine'
 require 'downloader/request_handler'
+require 'downloader/web/app'
 require 'optparse'
 
 module Downloader
@@ -8,6 +9,11 @@ module Downloader
 
     def self.run
       get_options
+
+      Process.fork do
+        Downloader::Web::App.run!
+      end
+
       puts "Server Started..."
       begin
         EM.run do
